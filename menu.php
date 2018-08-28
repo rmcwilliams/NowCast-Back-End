@@ -1,15 +1,12 @@
 <?php
-
-   // DON'T NEED TO DISCONNECT FROM DATABASE OR CLOSE SESSION ON THIS PAGE?
-    require_once('./php/dbConnect.php');
+    // DON'T NEED TO DISCONNECT FROM DATABASE OR CLOSE SESSION ON THIS PAGE?
+    include './Header.php';
     // if user doesn't have a token, send them back to login screen
     if (!isset($_SESSION['token'])) {
         header('Location: ../index.php');
         exit;
     }
 ?>
-<!doctype html>
-<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,9 +15,9 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <!-- Bootstrap js -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
     <!-- js file used to process forms -->
     <script src="./js/main.js"></script>
 
@@ -31,9 +28,6 @@
       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <link rel="stylesheet" href="https://ny.water.usgs.gov/resources/demos/style.css">
       <!-- JQuery UI ends -->
-
-
-    <title>Data Entry System</title>
   </head>
   <script>
     //sets the datepicker up
@@ -74,32 +68,32 @@
   </script>
   <body>
     <div class="container">
-        <div class="row">
-            <div align="center">
-                <h1>Welcome to The Great Lakes NowCast Data Entry System</h1>
-            </div>
-        </div>
         <!-- buttons -->
+        <br>
         <div class="row">
             <div align="center">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fieldData">Enter/Edit Field Data</button>
             </div>
         </div>
+        <br>
         <div class="row">
             <div align="center">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoliData">Enter/Edit E. coli Data</button>
             </div>
         </div>
+        <br>
         <div class="row">
             <div align="center">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#conditionData">Enter/Edit Condition Data</button>
             </div>
         </div>
+        <br>
         <div class="row">
             <div align="center">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportData">Export Data to CSV</button>
             </div>
         </div>
+        <br>
         <div class="row">
             <div align="center">
                 <button type="button" class="btn btn-primary" onclick="location.href='./php/logoff.php'">Log Off</button>
@@ -568,5 +562,6 @@
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-</html>
+<?php
+include 'Footer.php';
+?>
