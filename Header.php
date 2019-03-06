@@ -23,9 +23,9 @@
 </head>
 <body>
   <div class="header">
-    <h2>The Great Lakes NowCast Data Entry System</h2>
+    <h2>NowCast Data Entry System</h2>
     <?php
-        require_once('/php/dbConnect.php');
+        require_once('./php/dbConnect.php');
         // either show login or logoff
         if (!isset($_SESSION['token'])) {
             echo '<a class="topright" href="./index.php" style="text-decoration: none;">Login</a>';

@@ -1,10 +1,10 @@
 <?php
     session_start();
     // database info (USGS Natweb MySQL Server)
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $db = "glnowcast";
+	$host = "localhost";
+	$username = "root";
+	$password = "";
+	$db = "glnowcast";
 
     // connection
     $con = new mysqli($host,$username,$password,$db);
