@@ -5,8 +5,8 @@
 	//connect ot database
 	require_once('../dbConnect.php');
 	//get beach and date values from form
-	$beach = $_GET['site'];
-	$date = $_GET['date'];
+	$beach = htmlspecialchars($_GET['site']);
+	$date = htmlspecialchars($_GET['date']);
 
 	$check = "SELECT * FROM PB_CONDITIONS WHERE BEACH_NAME = '$beach' AND DATE = '$date'";
     // Run the query

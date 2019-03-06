@@ -1,5 +1,5 @@
 <?php
-include '../Header.php'; //how does it find this?
+//include '../Header.php';
 //connect to database
 require_once('./dbConnect.php');
 $username = htmlspecialchars($_POST['username']);
@@ -21,7 +21,7 @@ if (mysqli_num_rows($res) == 0) {
     $_SESSION['token'] = $username;
     // send user to menu.php
     header('Location: ../menu.php'); //correct path?
-    exit; //learn why you want to exit here and not do mysqli_close($con)
+    exit;
 }
 mysqli_close($con);
 ?>

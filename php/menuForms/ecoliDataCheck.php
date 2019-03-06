@@ -8,8 +8,8 @@
     require_once('../dbConnect.php');
     // get beach, date, time values from form
     // use these values to make retrieval query 
-    $beach = $_GET['site'];
-    $date = $_GET['date'];
+    $beach = htmlspecialchars($_GET['site']);
+    $date = htmlspecialchars($_GET['date']);
 
     $check = "SELECT * FROM PB_CONDITIONS WHERE BEACH_NAME = '$beach' AND DATE = '$date'";
     // Run the query

@@ -1,5 +1,4 @@
 <?php
-    // DON'T NEED TO DISCONNECT FROM DATABASE OR CLOSE SESSION ON THIS PAGE?
     include './Header.php';
     // if user doesn't have a token, send them back to login screen
     if (!isset($_SESSION['token'])) {
@@ -64,6 +63,17 @@
             }
         } );
         $("#datepicker2").datepicker("setDate", new Date);
+
+        $("#datepicker3").datepicker( {
+            // sets date format
+            dateFormat: "yy-mm-dd",
+            onSelect: function(dateText, inst) {
+                var date = $.datepicker.parseDate(inst.settings.dateFormat || $.datepicker._defaults.dateFormat, dateText, inst.settings);
+                var dateText1 = $.datepicker.formatDate("yy-mm-dd", date, inst.settings);
+                $("#datepicker3").text(dateText1);
+            }
+        } );
+        $("#datepicker3").datepicker("setDate", new Date);
     } );
   </script>
   <body>
@@ -94,6 +104,12 @@
             </div>
         </div>
         <br>
+        <!--<div class="row">
+            <div align="center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelEntry">Model Entry</button>
+            </div>
+        </div>
+        <br>-->
         <div class="row">
             <div align="center">
                 <button type="button" class="btn btn-primary" onclick="location.href='./php/logoff.php'">Log Off</button>
@@ -138,7 +154,6 @@
                                 <input type="text" class="form-control datepicker1" name="DATE" id="datepicker">
                             </div>
 
-
                             <button type="button" class="btn btn-success" id="check">Check</button>
                             <hr>
                             <div id = "parent-selector">
@@ -152,7 +167,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="LAKE_SPCOND">Swim Area Conductance (&#181S/cm):</label>
-                                    <input type="text" class="form-control" id="swimAreaCond">
+                                    <input type="text" class="form-control" id="LAKE_SPCOND">
                                 </div>
                                 <div class="form-group">
                                     <label for="CLOUD_CAT">Cloud Cover:</label>
@@ -182,12 +197,12 @@
                                     <input type="text" class="form-control" id="LOCAL_RAIN24_IN">
                                 </div>
                                 <div class="form-group">
-                                    <label for="WAVEHT_FT">Wave Height:</label>
-                                    <input type="text" class="form-control" id="waveHeight">
+                                    <label for="WAVEHT_FT">Wave Height (ft):</label>
+                                    <input type="text" class="form-control" id="WAVEHT_FT">
                                 </div>
                                 <div class="form-group">
                                     <label for="SECCHI_M">Secchi Disk (in):</label>
-                                    <input type="text" class="form-control" id="secchiDisk">
+                                    <input type="text" class="form-control" id="SECCHI_M">
                                 </div>
                                 <div class="form-group">
                                     <label for="LAKE_TURB_NTU">Swim Area Turbidity:</label>
@@ -294,7 +309,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="STREAM_SPCOND">Tributary 1 Conductance (&#181S/cm):</label>
-                                    <input type="text" class="form-control" id="STREAN_SPCOND">
+                                    <input type="text" class="form-control" id="STREAM_SPCOND">
                                 </div>
                                 <div class="form-group">
                                     <label for="STREAM2_GHT_FT">Tributary 2 Gage Height (ft):</label>
@@ -491,7 +506,7 @@
         </div>
 
             <!-- Modal -->
-            <div id="exportData" class="modal fade" role="dialog">
+        <div id="exportData" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -545,6 +560,189 @@
 
 
                             <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+                <!-- Modal -->
+        <div id="ecoliData" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                         <h4 class="modal-title">Nowcast E.coli Data Entry</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="ecoliDataForm">
+                            <div class="form-group">
+                                <label for="ecoliBEACH_NAME">Select site:</label>
+                                <select class="form-control" id="ecoliBEACH_NAME">
+                                    <option></option>
+                                    <?php
+                                        // DO YOU NEED TO RETYPE ALL OF THIS IF HAVE IT ABOVE?
+                                        
+                                        // retrieves the user login info from the session in order to only show the user their beaches
+                                        $user = $_SESSION['username'];
+                                        
+                                        $sql = "SELECT BEACH_NAME FROM SYS_BEACHES, SYS_LOGIN WHERE SYS_LOGIN.USER_ID = '$user' AND (SYS_LOGIN.COOP_ID = SYS_BEACHES.COOP_ID OR SYS_LOGIN.COOP_ID = 'COUNTY_ALL') ORDER BY BEACH_NAME";
+                                        $res = $con->query($sql);
+                                        
+                                        while($row = mysqli_fetch_assoc($res)) {
+                                            echo '<option value="'.$row['BEACH_NAME'].'">'.$row['BEACH_NAME'].'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="datepicker1">Date:</label>
+                                <input type="text" class="form-control datepicker1" name="DATE" id="datepicker1">
+                            </div>
+
+
+                            <button type="button" class="btn btn-success" id="ecoliCheck">Check</button>
+                            <hr>
+
+                            <div id = "parent-selector">
+                                <div class="form-group">
+                                    <label for="LAB_ECOLI">Enter E.coli values:</label>
+                                    <input type="text" class="form-control" id="LAB_ECOLI">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ERROR_TYPE">Error Type:</label>
+                                    <select class="form-control" id="ERROR_TYPE">
+                                        <option value="">Select an Error Type:</option>
+                                        <option>Correct Exceed</option>
+                                        <option>Correct Non-Exceed</option>
+                                        <option>False Exceed</option>
+                                        <option>False Non-Exceed</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ecoliTIME">Time-EST (HHMM):</label>
+                                    <input class="form-control" type="text" id="ecoliTIME" />
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-default" id="ecoliDataButton">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="modelEntry" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                         <h4 class="modal-title">Nowcast Model Entry</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="modelEntryForm">
+                            <div class="form-group">
+                                <label for="modelBEACH_NAME">Select site:</label>
+                                <select class="form-control" id="modelBEACH_NAME">
+                                    <option></option>
+                                    <?php
+                                        // DO YOU NEED TO RETYPE ALL OF THIS IF HAVE IT ABOVE?
+                                        
+                                        // retrieves the user login info from the session in order to only show the user their beaches
+                                        $user = $_SESSION['username'];
+                                        
+                                        $sql = "SELECT BEACH_NAME FROM SYS_BEACHES, SYS_LOGIN WHERE SYS_LOGIN.USER_ID = '$user' AND (SYS_LOGIN.COOP_ID = SYS_BEACHES.COOP_ID OR SYS_LOGIN.COOP_ID = 'COUNTY_ALL') ORDER BY BEACH_NAME";
+                                        $res = $con->query($sql);
+                                        
+                                        while($row = mysqli_fetch_assoc($res)) {
+                                            echo '<option value="'.$row['BEACH_NAME'].'">'.$row['BEACH_NAME'].'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="datepicker3">Date:</label>
+                                <input type="text" class="form-control datepicker1" name="DATE" id="datepicker3">
+                            </div>
+
+
+                            <button type="button" class="btn btn-success" id="modelCheck">Check</button>
+                            <hr>
+                            <div id = "parent-selector">
+                                <div class="form-group">
+                                    <label for="MODEL_NAME">Model Name:</label>
+                                    <input type="text" class="form-control" id="MODEL_NAME">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="MODEL_TYPE">Model Type:</label>
+                                    <select class="form-control" id="MODEL_TYPE">
+                                        <option value="">Select a Model Type:</option>
+                                        <option>[option 1]</option>
+                                        <option>[option 2]</option>
+                                        <option>[option 3]</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="THRESHOLD">Threshold:</label>
+                                    <input type="text" class="form-control" id="THRESHOLD">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="VB_ORIENT">Virtual Beach Orientation:</label>
+                                    <select class="form-control" id="VB_ORIENT">
+                                        <option value="">Select a Virtual Beach Orientation:</option>
+                                        <option>[option 1]</option>
+                                        <option>[option 2]</option>
+                                        <option>[option 3]</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="DEPEND_VAR">Dependent Variable:</label>
+                                    <input type="text" class="form-control" id="DEPEND_VAR">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="UNITS">Units:</label>
+                                    <select class="form-control" id="UNITS">
+                                        <option value="">Select Units:</option>
+                                        <option>[option 1]</option>
+                                        <option>[option 2]</option>
+                                        <option>[option 3]</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="R_SQUARED">R Squared Value:</label>
+                                    <input type="text" class="form-control" id="R_SQUARED">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="EQUATION">Equation:</label>
+                                    <input type="text" class="form-control" id="EQUATION" placeholder="Paste exact equation from Virtual Beach here">
+                                </div> 
+                            </div>
+
+                            <button type="submit" class="btn btn-default" id="modelEntryButton">Submit</button>
                         </form>
                     </div>
                     <div class="modal-footer">

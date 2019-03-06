@@ -5,8 +5,8 @@
     require_once('../dbConnect.php');
 
     // get site and date values from form
-    $site = $_GET['site'];
-    $date = $_GET['date'];
+    $site = htmlspecialchars($_GET['site']);
+    $date = htmlspecialchars($_GET['date']);
 
     $check = "SELECT * FROM INT_FIELD WHERE BEACH_NAME = '$site' AND DATE = '$date'";
     // Run the query

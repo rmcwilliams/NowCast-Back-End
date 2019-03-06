@@ -2,9 +2,9 @@
     // Initialize variables.
 
     // Parse all of the values POSTed from the Publish Data page.
-    $beach = $_POST["BEACH_NAME"];
-    $date = $_POST["DATE"];
-    $time = $_POST["TIME"];
+    $beach = htmlspecialchars($_POST["BEACH_NAME"]);
+    $date = htmlspecialchars($_POST["DATE"]);
+    $time = htmlspecialchars($_POST["TIME"]);
 
     // Connect to database
     require_once ('../dbConnect.php');
@@ -31,7 +31,7 @@
     }
 
     $Update .= "USER_ID= '$userLogin' ,COOP_ID='$coopid'"; //took off comma at end of $coopid 
-
+    $Update = htmlspecialchars($Update);
     // Create SQL statement to insert data.
     $sqlins = "UPDATE PB_CONDITIONS SET " . substr($Update, 0, -1) . 
        " WHERE BEACH_NAME='" . $beach . "' AND DATE='" . $date . "'";
@@ -39,12 +39,12 @@
     // Record exists, Update the database table.
     if (mysqli_num_rows($res) == 1) {
         if ($con->query($sqlins) === true) {
-            echo "Record updated<br>\n";
+            echo "Record updated.\n";
         } else {
-            echo "Error (ecoli): " . $sqlins . "<br>" . $con->error;
+            echo "Record was unable to be updated.";
         }
     } else {
-        echo "Record does not exist. Please enter Beach Conditions information first.<br>\n";
+        echo "Record does not exist. Please enter Beach Conditions information first.\n";
     }
 
     // Always close the connection

@@ -1,8 +1,8 @@
 <?php
 
-    $BEACH_NAME = $_POST['exportBEACH_NAME'];
-    $SEASON = $_POST['BEACH_SEASON'];
-	$TABLE = $_POST['TABLE'];
+    $BEACH_NAME = htmlspecialchars($_POST['exportBEACH_NAME']);
+    $SEASON = htmlspecialchars($_POST['BEACH_SEASON']);
+	$TABLE = htmlspecialchars($_POST['TABLE']);
     
     $ExportSchema = "DATE, ECOLI, USGS_ID, BEACH_NAME, TIME, SHOREHEAD_FT, SH_PREDAY, " .
       "STREAM_GHT_FT, STREAM_GHT_PREDAY, STREAM_TURB_NTU, STREAM_TURB_PREDAY, " .
@@ -71,7 +71,7 @@
 	}
 
     // Query the database for the beach season data and retreive the first recond.
-	echo $BEACH_NAME;
+	//echo $BEACH_NAME;
     $export = "SELECT * FROM PB_$tbl WHERE BEACH_NAME = '$BEACH_NAME' AND DATE BETWEEN '$BEGDATE' AND '$ENDDATE' ORDER BY DATE";
 
     $res = $con->query($export);
@@ -80,7 +80,7 @@
 
 	if (mysqli_num_rows($res) == 0) {
         echo "No data exists for $BEACH_NAME in $SEASON.<br>";
-        echo "Please press the browser's Back button and make another selection";
+        echo "Please press the browser's Back button and make another selection.";
         exit();
     }
 

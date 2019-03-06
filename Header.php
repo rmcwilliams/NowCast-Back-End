@@ -23,7 +23,7 @@
 </head>
 <body>
   <div class="header">
-    <h1>The Great Lakes NowCast Data Entry System</h1>
+    <h2>The Great Lakes NowCast Data Entry System</h2>
     <?php
         require_once('/php/dbConnect.php');
         // either show login or logoff

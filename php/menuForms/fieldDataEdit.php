@@ -25,7 +25,7 @@
     $pdate = $prevdate->format('Y-m-d');
 
     $sqlintsel = "SELECT STREAM_GHT_FT,STREAM_TURB_NTU,SHOREHEAD_FT,STREAM2_GHT_FT,STREAM2_TURB_NTU " .
-       " FROM INT_FIELD WHERE BEACH_NAME='" . $_POST['BEACH_NAME'] . "' AND DATE='" . $pdate . "'";
+       " FROM INT_FIELD WHERE BEACH_NAME='" . htmlspecialchars($_POST['BEACH_NAME']) . "' AND DATE='" . htmlspecialchars($pdate) . "'";
     // Run the query
     $resintsel = $con->query($sqlintsel);
     if (mysqli_num_rows($resintsel) != 0) {
@@ -48,22 +48,22 @@
     $Update1 .= $FieldList . $IntlKey . $userkey;
     $Update .= $FieldList . $Update_preday . $Update2_preday;
 
-    $sqlins = "UPDATE INT_FIELD SET " . substr($Update1, 0, -1) . 
-        " WHERE BEACH_NAME='" . $_POST['BEACH_NAME'] . "' AND DATE='" . $_POST['DATE'] . "'";
-    $sqlpbins = "UPDATE PB_EXPORT SET " . substr($Update, 0, -1) . 
-        " WHERE BEACH_NAME='" . $_POST['BEACH_NAME'] . "' AND DATE='" . $_POST['DATE'] . "'";
+    $sqlins = "UPDATE INT_FIELD SET " . substr(htmlspecialchars($Update1), 0, -1) . 
+        " WHERE BEACH_NAME='" . htmlspecialchars($_POST['BEACH_NAME']) . "' AND DATE='" . htmlspecialchars($_POST['DATE']) . "'";
+    $sqlpbins = "UPDATE PB_EXPORT SET " . substr(htmlspecialchars($Update), 0, -1) . 
+        " WHERE BEACH_NAME='" . htmlspecialchars($_POST['BEACH_NAME']) . "' AND DATE='" . htmlspecialchars($_POST['DATE']) . "'";
         
     if ($con->query($sqlpbins) === true) {
-        echo "Record updated in PB table ";
+        echo "Record updated in PB table.\n";
     } else {
-        echo "Error (pb): " . $sqlpbins . "<br>" . $con->error;
+        echo "Record was unable to be updated in PB table.\n";
     }
 
     // Record does not exist, add it to database.
     if ($con->query($sqlins) === true) {
-        echo "Record updated in INT table";
+        echo "Record updated in INT table.";
     } else {
-        echo "Error (int): " . $sqlins . "<br>" . $con->error;
+        echo "Record was unable to be updated in INT table.";
     }
 
     //echo $sqlins; //check to see what is in update query

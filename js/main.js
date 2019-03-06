@@ -132,13 +132,83 @@ $(function() {
         var STREAM2_TURB_NTU = $("#STREAM2_TURB_NTU").val();
         var STREAM2_SPCOND = $("#STREAM2_SPCOND").val();
 
-        //add which things are required later
-        /*
-        // check to make sure all fields are filled out
-        if (email == "" || password == "") {
-            $('#fieldDataError').show();
+        //check to make sure format of fields is correct
+        if (isNaN(TIME)) {
+            alert("Time-EST must be numeric.");
             return false;
-        }*/
+        }
+        if (INITIALS != "" && !(/^[a-z]+$/i.test(INITIALS))) {
+            alert("Initials must only contain letters.");
+            return false;
+        }
+        if (isNaN(LAKE_SPCOND)) {
+            alert("Swim Area Conductance must be numeric.");
+            return false;
+        }
+        if (isNaN(LAKE_TEMP_C)) {
+            alert("Water Temperature must be numeric.");
+            return false;
+        }
+        if (isNaN(AIR_TEMP_C)) {
+            alert("Air Temperature must be numeric.");
+            return false;
+        }
+        if (isNaN(SHOREHEAD_FT)) {
+            alert("Fore Shore Head must be numeric.");
+            return false;
+        }
+        if (isNaN(LOCAL_RAIN24_IN)) {
+            alert("Rain Gage Total must be numeric.");
+            return false;
+        }
+        if (isNaN(WAVEHT_FT)) {
+            alert("Wave Height must be numeric.");
+            return false;
+        }
+        if (isNaN(SECCHI_M)) {
+            alert("Secchi Disk must be numeric.");
+            return false;
+        }
+        if (isNaN(LAKE_TURB_NTU)) {
+            alert("Swim Area Turbidity must be numeric.");
+            return false;
+        }
+        if (isNaN(BATHER_CNT)) {
+            alert("Swimmer Count must be numeric.");
+            return false;
+        }
+        if (isNaN(BIRD_CNT)) {
+            alert("Bird Count must be numeric.");
+            return false;
+        }
+        if (isNaN(PH)) {
+            alert("pH must be numeric.");
+            return false;
+        }
+        if (isNaN(STREAM_GHT_FT)) {
+            alert("Tributary 1 Gage Height must be numeric.");
+            return false;
+        }
+        if (isNaN(STREAM_TURB_NTU)) {
+            alert("Tributary 1 Turbidity must be numeric.");
+            return false;
+        }
+        if (isNaN(STREAM_SPCOND)) {
+            alert("Tributary 1 Conductance must be numeric.");
+            return false;
+        }
+        if (isNaN(STREAM2_GHT_FT)) {
+            alert("Tributary 2 Gage Height must be numeric.");
+            return false;
+        }
+        if (isNaN(STREAM2_TURB_NTU)) {
+            alert("Tributary 2 Turbidity must be numeric.");
+            return false;
+        }
+        if (isNaN(STREAM2_SPCOND)) {
+            alert("Tributary 2 Conductance must be numeric.");
+            return false;
+        }
 
         //process the form further using ajax call
         var http = new XMLHttpRequest();
@@ -179,13 +249,11 @@ $(function() {
         var ERROR_TYPE = $("#ERROR_TYPE").val();
         var TIME = $("#ecoliTIME").val();
 
-        //add which things are required later
-        /*
-        // check to make sure all fields are filled out
-        if (email == "" || password == "") {
-            $('#fieldDataError').show();
+        //check to make sure format of fields is correct
+        if (isNaN(TIME)) {
+            alert("Time-EST must be numeric.");
             return false;
-        }*/
+        }
 
         //process the form further using ajax call
         var http = new XMLHttpRequest();
@@ -223,13 +291,18 @@ $(function() {
         var BEACH_REASON = $("#BEACH_REASON").val();
         var TIME = $("#conditionTIME").val();
 
-        //add which things are required later
-        /*
-        // check to make sure all fields are filled out
-        if (email == "" || password == "") {
-            $('#fieldDataError').show();
+        if (isNaN(NOWCAST_PROBABILITY)) {
+            alert("Probability of Exceeding must be numeric.");
             return false;
-        }*/
+        }
+        if (isNaN(NOWCAST_ECOLI)) {
+            alert("Estimated E.coli must be numeric.");
+            return false;
+        }
+        if (isNaN(TIME)) {
+            alert("Time-EST must be numeric.");
+            return false;
+        }
 
         //process the form further using ajax call
         var http = new XMLHttpRequest();
