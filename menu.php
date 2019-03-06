@@ -125,7 +125,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">Nowcast Field Data Entry</h4>
+                         <h4 class="modal-title">NowCast Field Data Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -342,7 +342,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">Nowcast E.coli Data Entry</h4>
+                         <h4 class="modal-title">NowCast E.coli Data Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -417,7 +417,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">Nowcast Conditions Data Entry</h4>
+                         <h4 class="modal-title">NowCast Conditions Data Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -512,7 +512,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">Nowcast E.coli Data Entry</h4>
+                         <h4 class="modal-title">NowCast E.coli Data Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -577,7 +577,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">Nowcast E.coli Data Entry</h4>
+                         <h4 class="modal-title">NowCast E.coli Data Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -652,7 +652,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">Nowcast Model Entry</h4>
+                         <h4 class="modal-title">NowCast Model Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
