@@ -159,7 +159,7 @@
                             <p>Fields with a * are required.</p>
                             <div id = "parent-selector">
                                 <div class="form-group">
-                                    <label for="TIME">Time-Local: (HHMM)*:</label>
+                                    <label for="TIME">Time-Local (HHMM):*</label>
                                     <input type="text" class="form-control" id="TIME">
                                 </div>
                                 <div class="form-group">
