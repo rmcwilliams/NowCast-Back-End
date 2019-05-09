@@ -4,7 +4,6 @@
     // Parse all of the values POSTed from the Publish Data page.
     $beach = htmlspecialchars($_POST["BEACH_NAME"]);
     $date = htmlspecialchars($_POST["DATE"]);
-    $time = htmlspecialchars($_POST["TIME"]);
 
     // Connect to database
     require_once ('../dbConnect.php');

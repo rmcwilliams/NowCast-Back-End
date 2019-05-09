@@ -64,6 +64,7 @@ $(function() {
                 // sets all the fields in the form equal to their database field values
                 $("#LAB_ECOLI").val(data.LAB_ECOLI);
                 $("#ERROR_TYPE").val(data.ERROR_TYPE);
+                $("#WQS_EXCEED").val(data.WQS_EXCEED)
                 if (data.WIN == "INSERT") {
                     insert = true;
                 } else { // are both of these needed?
@@ -258,17 +259,11 @@ $(function() {
         var date = $("#datepicker1").val();
         var LAB_ECOLI = $("#LAB_ECOLI").val();
         var ERROR_TYPE = $("#ERROR_TYPE").val();
-        var TIME = $("#ecoliTIME").val();
-
-        //check to make sure format of fields is correct
-        if (isNaN(TIME)) {
-            alert("Time-EST must be numeric.");
-            return false;
-        }
+        var WQS_EXCEED = $("#WQS_EXCEED").val();
 
         //process the form further using ajax call
         var http = new XMLHttpRequest();
-        var url; //can var url be inside of the if else statement below or will it not be in the same scope?
+        var url;
 
         if (insert) {
             url = './php/menuForms/ecoliDataInsert.php';
@@ -276,7 +271,7 @@ $(function() {
             url = './php/menuForms/ecoliDataEdit.php';
         }
 
-        var params = "BEACH_NAME=" + site + "&DATE=" + date + "&LAB_ECOLI=" + LAB_ECOLI + "&ERROR_TYPE=" + ERROR_TYPE + "&TIME=" + TIME;
+        var params = "BEACH_NAME=" + site + "&DATE=" + date + "&LAB_ECOLI=" + LAB_ECOLI + "&ERROR_TYPE=" + ERROR_TYPE + "&WQS_EXCEED=" + WQS_EXCEED;
 
         http.open('POST', url, true);
 

@@ -34,6 +34,7 @@
         $data = array(
             'LAB_ECOLI'         => $result["LAB_ECOLI"],
             'ERROR_TYPE'        => $result["ERROR_TYPE"],
+            'WQS_EXCEED'        => $result["WQS_EXCEED"],
             'WIN'               => $win
         );
     }

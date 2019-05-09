@@ -393,6 +393,15 @@
                                         <option>False Non-Exceed</option>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="WQS_EXCEED">WQS exceedance:</label>
+                                    <select class="form-control" id="WQS_EXCEED">
+                                        <option value="">Select an option:</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-default" id="ecoliDataButton">Submit</button>

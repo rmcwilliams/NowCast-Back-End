@@ -12,8 +12,8 @@
         $columnList .= "$key, ";
         $valueList .= "'$value', ";
     }
-    $columnList .= "ERROR_TYPE, LAB_ECOLI, BEACH_TIME, COOP_ID, USER_ID";
-    $valueList .= "'', '', '', '', '$userLogin'";
+    $columnList .= "ERROR_TYPE, LAB_ECOLI, COOP_ID, USER_ID";
+    $valueList .= "'', '', '', '$userLogin'";
 
     $sqlins = "INSERT INTO PB_CONDITIONS (" . htmlspecialchars($columnList) . ") VALUES (" . htmlspecialchars($valueList) . ")";
     // Record does not exist, add it to database.

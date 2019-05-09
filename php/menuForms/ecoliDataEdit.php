@@ -25,7 +25,7 @@
         echo "Record was unable to be updated in PB_CONDITIONS table.";
     }
     
-    //echo $sqlins;
+    echo $sqlins;
     // always close the connection
     mysqli_close($con);
 ?>
