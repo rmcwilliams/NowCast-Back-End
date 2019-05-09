@@ -64,7 +64,6 @@ $(function() {
                 // sets all the fields in the form equal to their database field values
                 $("#LAB_ECOLI").val(data.LAB_ECOLI);
                 $("#ERROR_TYPE").val(data.ERROR_TYPE);
-                $("#ecoliTIME").val(data.TIME);
                 if (data.WIN == "INSERT") {
                     insert = true;
                 } else { // are both of these needed?
@@ -131,6 +130,18 @@ $(function() {
         var STREAM2_GHT_FT = $("#STREAM2_GHT_FT").val();
         var STREAM2_TURB_NTU = $("#STREAM2_TURB_NTU").val();
         var STREAM2_SPCOND = $("#STREAM2_SPCOND").val();
+
+        //check to make sure required fields are filled out
+
+        if (TIME == "") {
+            alert("Time-Local is a required field.");
+            return false;
+        }
+
+        if (INITIALS == "") {
+            alert("Initials is a required field.");
+            return false;
+        }
 
         //check to make sure format of fields is correct
         if (isNaN(TIME)) {

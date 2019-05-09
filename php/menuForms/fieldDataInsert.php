@@ -31,7 +31,7 @@
         if ($con->query($sqlins) === true) {
             echo "Record added.\n";
         } else {
-            echo "Record was unable to be added.";
+            echo "Error: " . $sqlins . "\n" . $con->error;
         }
     } else {
         echo "Record already exists\n";

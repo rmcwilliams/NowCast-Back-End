@@ -2,27 +2,25 @@
     // Connect to database
     require_once ('../dbConnect.php');
 
-    // Setup sql query to insert the Field data from the form
-    $Update = "";
+    //variables for SQL query
+    $columnList = "";
+    $valueList = "";
 
-    $FieldList = "";
     $userLogin = $_SESSION['username'];
     // Loop through _POSTed data and accumulate keys and values for SQL statement
     foreach ($_POST as $key => $value) {
-        $FieldList .= "$key = '$value',";
+        $columnList .= "$key, ";
+        $valueList .= "'$value', ";
     }
-        $FieldList .= "USER_ID = '$userLogin' "; //took out comma at end, maybe fixed edit problem
-    // Create SQL statement to insert data.
-    
-    $Update = htmlspecialchars($FieldList);
-    $sqlins = "UPDATE PB_CONDITIONS SET " . substr($Update, 0, -1) . 
-        " WHERE BEACH_NAME='" . htmlspecialchars($_POST['BEACH_NAME']) . "' AND DATE='" . htmlspecialchars($_POST['DATE']) . "'";
-  
+    $columnList .= "ERROR_TYPE, LAB_ECOLI, BEACH_TIME, COOP_ID, USER_ID";
+    $valueList .= "'', '', '', '', '$userLogin'";
+
+    $sqlins = "INSERT INTO PB_CONDITIONS (" . htmlspecialchars($columnList) . ") VALUES (" . htmlspecialchars($valueList) . ")";
     // Record does not exist, add it to database.
     if ($con->query($sqlins) === true) {
-        echo "Record updated in PB_CONDITIONS table.\n";
+        echo "Record inserted into PB_CONDITIONS table.\n";
     } else {
-        echo "Record was unable to be updated in PB_CONDITIONS table.";
+        echo "Error: " . $sqlins . "\n" . $con->error;
     }
     
     //echo $sqlins;

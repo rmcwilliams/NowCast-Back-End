@@ -51,8 +51,8 @@
                 <span class='hidden-xs'><span class='visible-tablet-mobile' style='font-size:12px; color:white'>Page Contact Information: <a href="mailto:marsmith@usgs.gov" style='font-size:12px; color:white' target="_blank">Website Manager</a><br /></span></span>
                 <span class='visible-xs'><span class='visible-tablet-mobile' style='font-size:6px; color:white'>Page Contact Information: <a href="mailto:marsmith@usgs.gov" style='font-size:6px; color:white' target="_blank">Website Manager</a><br /></span></span>
 
-                <span class='hidden-xs'><span class='visible-tablet-mobile' style='font-size:12px; color:white'>Page Last Modified: Tuesday, August 28, 2018</span></span>
-                <span class='visible-xs'><span class='visible-tablet-mobile' style='font-size:6px; color:white'>Page Last Modified: Tuesday, August 28, 2018</span></span>
+                <span class='hidden-xs'><span class='visible-tablet-mobile' style='font-size:12px; color:white'>Page Last Modified: Friday, March 8, 2019</span></span>
+                <span class='visible-xs'><span class='visible-tablet-mobile' style='font-size:6px; color:white'>Page Last Modified: Friday, March 8, 2019</span></span>
             </p>
         </span>
     </div>

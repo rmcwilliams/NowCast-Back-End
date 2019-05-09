@@ -82,25 +82,25 @@
         <br>
         <div class="row">
             <div align="center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fieldData">Enter/Edit Field Data</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fieldData" style="width: 148.18px !important">Field Data</button>
             </div>
         </div>
         <br>
         <div class="row">
             <div align="center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoliData">Enter/Edit E. coli Data</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ecoliData" style="width: 148.18px !important">Lab Results Data</button>
             </div>
         </div>
         <br>
         <div class="row">
             <div align="center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#conditionData">Enter/Edit Condition Data</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#conditionData" style="width: 148.18px !important">Condition Data</button>
             </div>
         </div>
         <br>
         <div class="row">
             <div align="center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportData">Export Data to CSV</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exportData" style="width: 148.18px !important">Export Data to CSV</button>
             </div>
         </div>
         <br>
@@ -112,7 +112,7 @@
         <br>-->
         <div class="row">
             <div align="center">
-                <button type="button" class="btn btn-primary" onclick="location.href='./php/logoff.php'">Log Off</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='./php/logoff.php'" style="width: 148.18px !important">Log Off</button>
             </div>
         </div>
 
@@ -139,11 +139,11 @@
                                         // retrieves the user login info from the session in order to only show the user their beaches
                                         $user = $_SESSION['username'];
                                         
-                                        $sql = "SELECT BEACH_NAME FROM SYS_BEACHES, SYS_LOGIN WHERE SYS_LOGIN.USER_ID = '$user' AND (SYS_LOGIN.COOP_ID = SYS_BEACHES.COOP_ID OR SYS_LOGIN.COOP_ID = 'COUNTY_ALL') ORDER BY BEACH_NAME";
+                                        $sql = "SELECT BEACH_NAME, STATE FROM SYS_BEACHES, SYS_LOGIN WHERE SYS_LOGIN.USER_ID = '$user' AND (SYS_LOGIN.COOP_ID = SYS_BEACHES.COOP_ID OR SYS_LOGIN.COOP_ID = 'COUNTY_ALL') ORDER BY BEACH_NAME";
                                         $res = $con->query($sql);
                                         
                                         while($row = mysqli_fetch_assoc($res)) {
-                                            echo '<option value="'.$row['BEACH_NAME'].'">'.$row['BEACH_NAME'].'</option>';
+                                            echo '<option value="'.$row['BEACH_NAME'].'">'.$row['BEACH_NAME'].', ' . $row['STATE'] . '</option>';
                                         }
                                     ?>
                                 </select>
@@ -156,13 +156,14 @@
 
                             <button type="button" class="btn btn-success" id="check">Check</button>
                             <hr>
+                            <p>Fields with a * are required.</p>
                             <div id = "parent-selector">
                                 <div class="form-group">
-                                    <label for="TIME">Time-EST: (HHMM):</label>
+                                    <label for="TIME">Time-Local: (HHMM)*:</label>
                                     <input type="text" class="form-control" id="TIME">
                                 </div>
                                 <div class="form-group">
-                                    <label for="INITIALS">Initials:</label>
+                                    <label for="INITIALS">Initials:*</label>
                                     <input type="text" class="form-control" id="INITIALS">
                                 </div>
                                 <div class="form-group">
@@ -278,7 +279,7 @@
                                     <input type="text" class="form-control" id="PH">
                                 </div>
                                 <div class="form-group">
-                                    <label for="WAVERUNUP_CAT">Wave RunUp:</label>
+                                    <label for="WAVERUNUP_CAT">Wave RunUp (ft):</label>
                                     <select class="form-control" id="WAVERUNUP_CAT">
                                         <option>Select a number:</option>
                                         <option value="1">1</option>
@@ -342,7 +343,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">NowCast E.coli Data Entry</h4>
+                         <h4 class="modal-title">NowCast Lab Results Data Entry</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -391,11 +392,6 @@
                                         <option>False Exceed</option>
                                         <option>False Non-Exceed</option>
                                     </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="ecoliTIME">Time-EST (HHMM):</label>
-                                    <input class="form-control" type="text" id="ecoliTIME" />
                                 </div>
                             </div>
 
@@ -458,7 +454,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="NOWCAST_ECOLI">Estimated E.coli:</label>
+                                    <label for="NOWCAST_ECOLI">Estimated Concentration:</label>
                                     <input type="text" class="form-control" id="NOWCAST_ECOLI">
                                 </div>
 
@@ -512,7 +508,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                         <h4 class="modal-title">NowCast E.coli Data Entry</h4>
+                         <h4 class="modal-title">NowCast Data Export</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">

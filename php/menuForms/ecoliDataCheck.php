@@ -28,12 +28,10 @@
     }
     // Data exists in the database
     else {
-        // dont know if I need time yet
         // We have to update since there was data in the database
         $win = "EDIT";
         // array with all the values from the database
         $data = array(
-            'TIME'              => $result["TIME"],
             'LAB_ECOLI'         => $result["LAB_ECOLI"],
             'ERROR_TYPE'        => $result["ERROR_TYPE"],
             'WIN'               => $win

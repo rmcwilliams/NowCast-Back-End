@@ -41,7 +41,7 @@
         if ($con->query($sqlins) === true) {
             echo "Record updated.\n";
         } else {
-            echo "Record was unable to be updated.";
+            echo "Error: " . $sqlins . "\n" . $con->error;
         }
     } else {
         echo "Record does not exist. Please enter Beach Conditions information first.\n";
