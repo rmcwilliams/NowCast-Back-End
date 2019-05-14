@@ -1,2 +1,2 @@
 # NowCast Back End
-Allows swim area operators to insert, edit, or download data stored in the NowCast database.
+Allows swim area operators to insert, edit, or download data stored in the NowCast database. Check out my "NowCast" repo.
